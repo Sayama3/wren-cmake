@@ -46,6 +46,32 @@ involved][contribute]!
 
 [![Build Status](https://travis-ci.org/wren-lang/wren.svg?branch=main)](https://travis-ci.org/wren-lang/wren)
 
+### Cmake
+
+The Cmake file is located at `projects/cmake/CMakeLists.txt`.
+
+Using `FetchContent` it you can simply do :
+```cmake
+cmake_minimum_required(VERSION 3.18)
+
+include(FetchContent)
+
+FetchContent_Declare( Wren
+  GIT_REPOSITORY https://github.com/Sayama3/wren-cmake.git
+  GIT_TAG main
+  SOURCE_SUBDIR projects/cmake
+)
+
+FetchContent_MakeAvailable(Wren)
+
+target_link_libraries(my-app wren-lang:wren)
+```
+
+or you can clone the repository and add the subdirectory using 
+```cmake
+add_subdirectory(wren-cmake/projects/cmake)
+```
+
 [syntax]: http://wren.io/syntax.html
 [src]: https://github.com/wren-lang/wren/tree/main/src
 [nan]: https://github.com/wren-lang/wren/blob/93dac9132773c5bc0bbe92df5ccbff14da9d25a6/src/vm/wren_value.h#L486-L541
